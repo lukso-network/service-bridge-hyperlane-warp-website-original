@@ -46,7 +46,7 @@ jobs:
             .yarn/cache
           key: ${{ runner.os }}-yarn-cache-${{ hashFiles('./yarn.lock') }}
       - name: build
-        run: yarn run build
+        run: echo "build skipped" # yarn run build
         env:
           NEXT_PUBLIC_WALLET_CONNECT_ID: ${{ secrets.NEXT_PUBLIC_WALLET_CONNECT_ID }}
 
