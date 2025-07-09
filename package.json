@@ -97,10 +97,10 @@
     "start": "next start",
     "test": "vitest --watch false",
     "prettier": "prettier --write ./src",
-    "pages:build": "node ./pre-build.mjs && next-on-pages",
+    "pages:build": "next-on-pages",
     "pages:deploy": "npm run pages:build && wrangler pages publish .vercel/output/static",
-    "pages:watch": "node ./pre-build.mjs && next-on-pages --watch",
-    "pages:dev": "node ./pre-build.mjs && wrangler pages dev .vercel/output/static yarn pages:dev --compatibility-flags=nodejs_compat"
+    "pages:watch": "next-on-pages --watch",
+    "pages:dev": "wrangler pages dev .vercel/output/static yarn pages:dev --compatibility-flags=nodejs_compat"
   },
   "types": "dist/src/index.d.ts",
   "resolutions": {
