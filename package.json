@@ -6,6 +6,7 @@
   "dependencies": {
     "@chakra-ui/next-js": "^2.4.2",
     "@chakra-ui/react": "^2.8.2",
+    "@cloudflare/next-on-pages": "^1.13.12",
     "@cosmjs/cosmwasm-stargate": "^0.32.4",
     "@cosmjs/stargate": "^0.32.4",
     "@cosmos-kit/core": "^2.13.1",
@@ -50,6 +51,7 @@
     "starknetkit": "2.6.1",
     "viem": "^2.21.41",
     "wagmi": "^2.12.26",
+    "wrangler": "^4.24.0",
     "zod": "3.21.4",
     "zustand": "^4.4.7"
   },
@@ -94,7 +96,11 @@
     "lint": "next lint",
     "start": "next start",
     "test": "vitest --watch false",
-    "prettier": "prettier --write ./src"
+    "prettier": "prettier --write ./src",
+    "pages:build": "next-on-pages",
+    "pages:deploy": "npm run pages:build && wrangler pages publish .vercel/output/static",
+    "pages:watch": "next-on-pages --watch",
+    "pages:dev": "wrangler pages dev .vercel/output/static yarn pages:dev --compatibility-flags=nodejs_compat"
   },
   "types": "dist/src/index.d.ts",
   "resolutions": {
