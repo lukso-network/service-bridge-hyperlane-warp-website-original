@@ -3,18 +3,47 @@
 # The input here is typically the output of the Hyperlane CLI warp deploy command
 ---
 tokens:
-  - addressOrDenom: '0x570c87Be0FffB4411ee17451B67245644258A2D8'
+  # LUKSO Testnet <-> Ethereum Sepolia (deprecated)
+  # - addressOrDenom: '0x570c87Be0FffB4411ee17451B67245644258A2D8'
+  #   chainName: luksotestnet
+  #   connections:
+  #     - token: ethereum|sepolia|0x49262BaD56324003f01043e24DE36Cf804aA36c1
+  #   decimals: 18
+  #   name: Testnet LUKSO
+  #   standard: EvmHypNative
+  #   symbol: LYXt
+  # - addressOrDenom: '0x49262BaD56324003f01043e24DE36Cf804aA36c1'
+  #   chainName: sepolia
+  #   connections:
+  #     - token: ethereum|luksotestnet|0x570c87Be0FffB4411ee17451B67245644258A2D8
+  #   decimals: 18
+  #   name: Testnet LUKSO
+  #   standard: EvmHypSynthetic
+  #   symbol: LYXt
+  # LUKSO Testnet <-> Base Sepolia | Ethereum Sepolia
+  - addressOrDenom: '0x92731d92658D0cB944E2cacE5B878A46AD5C4656'
     chainName: luksotestnet
     connections:
-      - token: ethereum|sepolia|0x49262BaD56324003f01043e24DE36Cf804aA36c1
+      - token: ethereum|basesepolia|0x3096e98A82Dd7a1ADFAA71d0DEF8F7Cfd3d43eA0
+      - token: ethereum|sepolia|0x64cc8C471BC0E5e44511B43ecb086Ec851dA1401
     decimals: 18
     name: Testnet LUKSO
     standard: EvmHypNative
     symbol: LYXt
-  - addressOrDenom: '0x49262BaD56324003f01043e24DE36Cf804aA36c1'
+  - addressOrDenom: '0x3096e98A82Dd7a1ADFAA71d0DEF8F7Cfd3d43eA0'
+    chainName: basesepolia
+    connections:
+      - token: ethereum|luksotestnet|0x92731d92658D0cB944E2cacE5B878A46AD5C4656
+      - token: ethereum|sepolia|0x64cc8C471BC0E5e44511B43ecb086Ec851dA1401
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypSynthetic
+    symbol: LYXt
+  - addressOrDenom: '0x64cc8C471BC0E5e44511B43ecb086Ec851dA1401'
     chainName: sepolia
     connections:
-      - token: ethereum|luksotestnet|0x570c87Be0FffB4411ee17451B67245644258A2D8
+      - token: ethereum|luksotestnet|0x92731d92658D0cB944E2cacE5B878A46AD5C4656
+      - token: ethereum|basesepolia|0x3096e98A82Dd7a1ADFAA71d0DEF8F7Cfd3d43eA0
     decimals: 18
     name: Testnet LUKSO
     standard: EvmHypSynthetic
