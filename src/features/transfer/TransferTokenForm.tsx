@@ -56,11 +56,13 @@ import {
 } from '../tokens/hooks';
 import { getTokensWithSameCollateralAddresses, isValidMultiCollateralToken } from '../tokens/utils';
 import { RecipientConfirmationModal } from './RecipientConfirmationModal';
+import { RecipientNotSameContractModal } from './RecipientNotSameContractModal';
 import { useFetchMaxAmount } from './maxAmount';
 import { TransferFormValues } from './types';
 import { useRecipientBalanceWatcher } from './useBalanceWatcher';
 import { useFeeQuotes } from './useFeeQuotes';
 import { useTokenTransfer } from './useTokenTransfer';
+import { isSmartContract } from './utils';
 
 export function TransferTokenForm() {
   const multiProvider = useMultiProvider();
@@ -89,6 +91,13 @@ export function TransferTokenForm() {
     isOpen: isConfirmationModalOpen,
   } = useModal();
 
+  // Modal for confirming address is same smart contract on destination
+  const {
+    open: openAddressCheckModal,
+    close: closeAddressCheckModal,
+    isOpen: isAddressCheckModalOpen,
+  } = useModal();
+
   const validate = async (values: TransferFormValues) => {
     const [result, overrideToken] = await validateForm(
       warpCore,
@@ -106,6 +115,7 @@ export function TransferTokenForm() {
   const onSubmitForm = async (values: TransferFormValues) => {
     logger.debug('Checking destination native balance for:', values.destination, values.recipient);
     const balance = await getDestinationNativeBalance(multiProvider, values);
+
     if (isNullish(balance)) return;
     else if (balance > 0n) {
       logger.debug('Reviewing transfer form values for:', values.origin, values.destination);
@@ -113,6 +123,41 @@ export function TransferTokenForm() {
     } else {
       logger.debug('Recipient has no balance on destination. Confirming address.');
       openConfirmationModal();
+    }
+
+    const { address: connectedWallet } = getAccountAddressAndPubKey(
+      multiProvider,
+      values.origin,
+      accounts,
+    );
+    if (!connectedWallet) return;
+
+    // check first if the address on origin is a smart contract
+    const isSenderSmartContract = await isSmartContract(
+      multiProvider,
+      values.origin,
+      connectedWallet,
+    );
+
+    const isSelfRecipient = values.recipient?.toLowerCase() === connectedWallet.toLowerCase();
+
+    let isRecipientSmartContract: boolean | undefined;
+
+    if (isSelfRecipient) {
+      isRecipientSmartContract = await isSmartContract(
+        multiProvider,
+        values.destination,
+        values.recipient,
+      );
+    }
+
+    if (isSenderSmartContract && isSelfRecipient && !isRecipientSmartContract) {
+      const msg =
+        'The recipient address is the same as the connected wallet, but it appears to not exist as a smart contract on the destination chain.';
+      logger.debug(msg);
+      toast.warning(msg);
+      openAddressCheckModal();
+      return;
     }
   };
 
@@ -149,6 +194,11 @@ export function TransferTokenForm() {
           <RecipientConfirmationModal
             isOpen={isConfirmationModalOpen}
             close={closeConfirmationModal}
+            onConfirm={() => setIsReview(true)}
+          />
+          <RecipientNotSameContractModal
+            isOpen={isAddressCheckModalOpen}
+            close={closeAddressCheckModal}
             onConfirm={() => setIsReview(true)}
           />
         </Form>
