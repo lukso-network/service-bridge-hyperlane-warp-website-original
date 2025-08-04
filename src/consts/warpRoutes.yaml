@@ -4,34 +4,33 @@
 ---
 tokens:
   # LUKSO Testnet <-> Base Sepolia | Ethereum Sepolia (pausable + audited)
-  tokens:
-    - addressOrDenom: '0x7c35478e6523e832403DA91fd23490f593cD09dE'
-      chainName: luksotestnet
-      connections:
-        - token: ethereum|basesepolia|0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a
-        - token: ethereum|sepolia|0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd
-      decimals: 18
-      name: Testnet LUKSO
-      standard: EvmHypNative
-      symbol: LYXt
-    - addressOrDenom: '0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a'
-      chainName: basesepolia
-      connections:
-        - token: ethereum|luksotestnet|0x7c35478e6523e832403DA91fd23490f593cD09dE
-        - token: ethereum|sepolia|0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd
-      decimals: 18
-      name: Testnet LUKSO
-      standard: EvmHypSynthetic
-      symbol: LYXt
-    - addressOrDenom: '0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd'
-      chainName: sepolia
-      connections:
-        - token: ethereum|luksotestnet|0x7c35478e6523e832403DA91fd23490f593cD09dE
-        - token: ethereum|basesepolia|0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a
-      decimals: 18
-      name: Testnet LUKSO
-      standard: EvmHypSynthetic
-      symbol: LYXt
+  - addressOrDenom: '0x7c35478e6523e832403DA91fd23490f593cD09dE'
+    chainName: luksotestnet
+    connections:
+      - token: ethereum|basesepolia|0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a
+      - token: ethereum|sepolia|0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypNative
+    symbol: LYXt
+  - addressOrDenom: '0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a'
+    chainName: basesepolia
+    connections:
+      - token: ethereum|luksotestnet|0x7c35478e6523e832403DA91fd23490f593cD09dE
+      - token: ethereum|sepolia|0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypSynthetic
+    symbol: LYXt
+  - addressOrDenom: '0xDb0E2F2984eb8E57b9A1C008f7005338049a83dd'
+    chainName: sepolia
+    connections:
+      - token: ethereum|luksotestnet|0x7c35478e6523e832403DA91fd23490f593cD09dE
+      - token: ethereum|basesepolia|0xfa4CC098BF9cE6Aa30AA88aa2504bEd12C7fc35a
+    decimals: 18
+    name: Testnet LUKSO
+    standard: EvmHypSynthetic
+    symbol: LYXt
   # ------------------------------------------------------------
   # LUKSO Testnet <-> Base Sepolia | Ethereum Sepolia (non-pausable) (deprecated)
   # - addressOrDenom: '0x92731d92658D0cB944E2cacE5B878A46AD5C4656'
