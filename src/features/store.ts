@@ -65,6 +65,8 @@ export interface AppState {
   setIsSideBarOpen: (isOpen: boolean) => void;
   showEnvSelectModal: boolean;
   setShowEnvSelectModal: (show: boolean) => void;
+  recipientAddressConfirmed: boolean;
+  setRecipientAddressConfirmed: (confirmed: boolean) => void;
 
   originChainName: ChainName;
   setOriginChainName: (originChainName: ChainName) => void;
@@ -167,6 +169,10 @@ export const useStore = create<AppState>()(
       showEnvSelectModal: false,
       setShowEnvSelectModal: (showEnvSelectModal) => {
         set(() => ({ showEnvSelectModal }));
+      },
+      recipientAddressConfirmed: true,
+      setRecipientAddressConfirmed: (recipientAddressConfirmed) => {
+        set(() => ({ recipientAddressConfirmed }));
       },
       originChainName: '',
       setOriginChainName: (originChainName: ChainName) => {
