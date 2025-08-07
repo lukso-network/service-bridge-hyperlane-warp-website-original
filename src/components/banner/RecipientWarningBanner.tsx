@@ -21,12 +21,15 @@ export function RecipientWarningBanner({
         <WarningIcon width={40} height={40} />
         <div>
           <p className="my-2">
-            The recipient address entered is the same as the connected smart contract wallet, but it
-            does not exist as a smart contract on {destinationChain}.
+            The recipient address is the same as the currently connected smart contract wallet,{' '}
+            <strong>but it does not exist as a smart contract on {destinationChain}</strong>.
           </p>
           <p className="my-2">This may result in losing access to your bridged tokens.</p>
           <p className="my-2">
-            <strong>Double-check the recipient address before proceeding.</strong>
+            <strong>
+              Only proceed if you are certain you have control over this address on{' '}
+              {destinationChain}
+            </strong>
           </p>
           <div className="justify-left flex w-max gap-2 rounded bg-white/30 px-2.5 py-1 text-center hover:bg-white/50 active:bg-white/60">
             <input
@@ -35,7 +38,9 @@ export function RecipientWarningBanner({
               id="confirm-address"
               name="confirm-recipient"
             />
-            <label htmlFor="confirm-address">I know what I am doing</label>
+            <label htmlFor="confirm-address">
+              I have control and want to bridge to this address
+            </label>
           </div>
         </div>
       </div>
