@@ -3,6 +3,34 @@
 # The input here is typically the output of the Hyperlane CLI warp deploy command
 ---
 tokens:
+  - chainName: base
+    standard: EvmHypSynthetic
+    decimals: 18
+    symbol: LYX
+    name: LUKSO
+    addressOrDenom: '0x28B5bE8B28C897e59Bc2fB865AA16429A3Dad05e'
+    connections:
+      - token: ethereum|lukso|0x26d96D8aEf3424015104109F138DDebF89e41d26
+      - token: ethereum|ethereum|0xcBe4287A835Efe58C56D8F8372890D9c6B80f44a
+  - chainName: lukso
+    standard: EvmHypNative
+    decimals: 18
+    symbol: LYX
+    name: LUKSO
+    addressOrDenom: '0x26d96D8aEf3424015104109F138DDebF89e41d26'
+    connections:
+      - token: ethereum|base|0x28B5bE8B28C897e59Bc2fB865AA16429A3Dad05e
+      - token: ethereum|ethereum|0xcBe4287A835Efe58C56D8F8372890D9c6B80f44a
+  - chainName: ethereum
+    standard: EvmHypSynthetic
+    decimals: 18
+    symbol: LYX
+    name: LYX (e2e testing)
+    addressOrDenom: '0xcBe4287A835Efe58C56D8F8372890D9c6B80f44a'
+    connections:
+      - token: ethereum|base|0x28B5bE8B28C897e59Bc2fB865AA16429A3Dad05e
+      - token: ethereum|lukso|0x26d96D8aEf3424015104109F138DDebF89e41d26
+  # ------------------------------------------------------------
   # LUKSO Testnet <-> Base Sepolia | Ethereum Sepolia (pausable + audited)
   - addressOrDenom: '0x7c35478e6523e832403DA91fd23490f593cD09dE'
     chainName: luksotestnet
