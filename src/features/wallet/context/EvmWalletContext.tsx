@@ -19,6 +19,7 @@ import { WagmiProvider, createConfig } from 'wagmi';
 import { APP_NAME } from '../../../consts/app';
 import { config } from '../../../consts/config';
 import { Color } from '../../../styles/Color';
+import { universalProfilesWallet } from '../../../utils/universalProfile';
 import { useMultiProvider } from '../../chains/hooks';
 
 function initWagmi(multiProvider: MultiProtocolProvider) {
@@ -32,7 +33,14 @@ function initWagmi(multiProvider: MultiProtocolProvider) {
       },
       {
         groupName: 'More',
-        wallets: [binanceWallet, coinbaseWallet, rainbowWallet, trustWallet, argentWallet],
+        wallets: [
+          binanceWallet,
+          coinbaseWallet,
+          rainbowWallet,
+          trustWallet,
+          argentWallet,
+          universalProfilesWallet,
+        ],
       },
     ],
     { appName: APP_NAME, projectId: config.walletConnectProjectId },
